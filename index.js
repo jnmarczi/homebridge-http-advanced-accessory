@@ -13,6 +13,9 @@ function HttpAdvancedAccessory(log, config) {
 	this.log = log;
 	this.name = config.name;
 	this.service = config.service;
+	this.manufacturer = config.manufacturer || "Custom Manufacturer";
+    this.model = config.model || "HTTP Accessory Model";
+	this.serialNumber = config.serialNumber || "HTTP Accessory Serial Number";
 	this.optionCharacteristic = config.optionCharacteristic || [];
 	this.forceRefreshDelay = config.forceRefreshDelay || 0;
 	this.setterDelay  = config.setterDelay || 0;
@@ -250,9 +253,9 @@ HttpAdvancedAccessory.prototype = {
 		var informationService = new Service.AccessoryInformation();
 
 		informationService
-			.setCharacteristic(Characteristic.Manufacturer, this.manufacturer || "Custom Manufacturer")
-			.setCharacteristic(Characteristic.Model, this.model || "HTTP Accessory Model")
-			.setCharacteristic(Characteristic.SerialNumber, this.serialNumber || "HTTP Accessory Serial Number");
+			.setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
+			.setCharacteristic(Characteristic.Model, this.model)
+			.setCharacteristic(Characteristic.SerialNumber, this.serialNumber);
 
 		var newService = null
 		switch (this.service) {
