@@ -87,16 +87,8 @@ function HttpAdvancedAccessory(log, config) {
 		}
 
 	}
-	self.auth = {
-		username: config.username || "",
-		password: config.password || "",
-		immediately: true
-	};
 
-	if ("immediately" in config) {
-		self.auth.immediately = config.immediately;
-	}
-
+	self.auth.token = config.token || null;
 
 }
 
@@ -125,13 +117,8 @@ HttpAdvancedAccessory.prototype = {
 			url: url,
 			body: body,
 			method: httpMethod,
-			auth: {
-				user: this.auth.username,
-				pass: this.auth.password,
-				sendImmediately: this.auth.immediately
-			},
 			headers: {
-				Authorization: "Basic " + new Buffer(this.auth.username + ":" + this.auth.password).toString("base64")
+				"x-access-token": this.auth.token
 			}
 		},
 		function(error, response, body) {
