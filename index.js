@@ -250,9 +250,9 @@ HttpAdvancedAccessory.prototype = {
 		var informationService = new Service.AccessoryInformation();
 
 		informationService
-			.setCharacteristic(Characteristic.Manufacturer, "Custom Manufacturer")
-			.setCharacteristic(Characteristic.Model, "HTTP Accessory Model")
-			.setCharacteristic(Characteristic.SerialNumber, "HTTP Accessory Serial Number");
+			.setCharacteristic(Characteristic.Manufacturer, this.manufacturer || "Custom Manufacturer")
+			.setCharacteristic(Characteristic.Model, this.model || "HTTP Accessory Model")
+			.setCharacteristic(Characteristic.SerialNumber, this.serialNumber || "HTTP Accessory Serial Number");
 
 		var newService = null
 		switch (this.service) {
