@@ -88,6 +88,7 @@ function HttpAdvancedAccessory(log, config) {
 
 	}
 
+	self.auth = {};
 	self.auth.token = config.token || null;
 
 }
