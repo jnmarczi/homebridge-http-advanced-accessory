@@ -193,7 +193,6 @@ HttpAdvancedAccessory.prototype = {
 			if (!action) {
 				callback(null);
 			}
-			this.debugLog("%s", action.actionName);
 			this.debugLog("getDispatch function called for url: %s", action.url);
 			this.httpRequest(action.url, action.body, action.httpMethod, function(error, response, responseBody) {
 				if (error) {
@@ -346,10 +345,9 @@ HttpAdvancedAccessory.prototype = {
 			return {
 				getter: function (callback) {
 					var actionName = "get" + characteristic.displayName.replace(/\s/g, '');
+                    this.debugLog(actionName + " function requested");
 					var action = this.urls[actionName];
-					action.actionName = actionName;
-
-					if (this.forceRefreshDelay == 0 ) { 
+					if (this.forceRefreshDelay == 0 ) {
 						getDispatch(function(error,data){
 							this.debugLog(actionName + " getter function returned with data: " + data);
 							this.enableSet = false;
